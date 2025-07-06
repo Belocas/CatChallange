@@ -10,13 +10,48 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    
+    @StateObject private var viewModel = CatListViewModel()
+
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
     private var items: FetchedResults<Item>
 
+    private let columns = [
+        GridItem(.flexible()),
+        GridItem(.flexible())
+    ]
+    
     var body: some View {
+               NavigationView {
+                   ScrollView {
+                       if viewModel.isLoading {
+                           ProgressView("Loading...")
+                               .padding()
+                       } else if let error = viewModel.errorMessage {
+                           Text(error)
+                               .foregroundColor(.red)
+                               .padding()
+                       } else {
+                           LazyVGrid(columns: columns, spacing: 16) {
+                               ForEach(viewModel.cats, id: \.id) { cat in
+                                   CatGridItem(cat: cat)
+                               }
+                           }
+                           .padding()
+                       }
+                   }
+                   .navigationTitle("Cat Breeds")
+                   .onAppear {
+                       viewModel.getCats()
+                       viewModel.loadNextPage()
+                   }
+               }
+
+        
+        
         NavigationView {
             List {
                 ForEach(items) { item in
@@ -84,3 +119,7 @@ private let itemFormatter: DateFormatter = {
 #Preview {
     ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
 }
+
+
+
+
