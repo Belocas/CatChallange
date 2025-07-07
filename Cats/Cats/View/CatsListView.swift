@@ -9,7 +9,7 @@ import SwiftUI
 
 struct CatsListView: View {
     @StateObject private var viewModel = CatListViewModel()
-    
+
     private let columns = [
         GridItem(.flexible()),
         GridItem(.flexible())
@@ -19,15 +19,13 @@ struct CatsListView: View {
         NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 16) {
-                    ForEach(viewModel.cats.indices, id: \.self) { index in
-                        CatGridItem(cat: viewModel.cats[index])
+                    ForEach(viewModel.filteredCats, id: \.id) { cat in
+                        CatGridItem(cat: cat)
                             .onAppear {
-                                // Carrega a próxima página ao chegar ao último item
-                                if index == viewModel.cats.count - 1 {
-                                    viewModel.loadNextPage()
-                                    viewModel.getCats()
-
-                                }
+                                if cat == viewModel.cats.last {
+                                       viewModel.loadNextPage()
+                                       viewModel.getCats()
+                                   }
                             }
                     }
                     
@@ -40,6 +38,7 @@ struct CatsListView: View {
                 }
                 .padding()
             }
+            .searchable(text: $viewModel.searchText ,  prompt: "Search breeds")
             .navigationTitle("Cat Breeds")
             .onAppear {
                 if viewModel.cats.isEmpty {

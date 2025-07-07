@@ -13,6 +13,8 @@ class CatListViewModel: ObservableObject {
     @Published var cats: [Cat] = []
     @Published var isLoading = false
     @Published var errorMessage: String?
+    @Published var searchText: String = ""
+
 
     private let catService = CatService()
     private let dataManager = CatDataManager()
@@ -45,4 +47,14 @@ class CatListViewModel: ObservableObject {
         print("Total guardado: countCats(in: \(total))")
 
     }
+    
+    var filteredCats: [Cat] {
+        if searchText.isEmpty {
+            return cats
+        } else {
+            return cats.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        }
+    }
+    
+    
 }

@@ -7,16 +7,16 @@
 
 
 import CoreData
-struct Cat:Codable{
+struct Cat:Identifiable, Equatable, Codable{
     let id:String
     let name:String
     let temperament:String
     let origin:String
     let description:String
-    
+    let imageId:String
     
     enum CodingKeys: String, CodingKey {
-        case  id, name,temperament, origin, description
+        case  id, name,temperament, origin, description, imageId = "reference_image_id"
     }
 }
 
@@ -30,6 +30,7 @@ extension Cat{
         self.temperament = entity.temperament ?? ""
         self.origin = entity.origin ?? ""
         self.description = entity.bredd_description ?? ""
+        self.imageId = "" //TODO
 
     }
     
@@ -41,6 +42,7 @@ extension Cat{
         entity.temperament = temperament
         entity.origin = origin
         entity.bredd_description = description
+        //TODO: reference_image_id
         return entity
     }
 }
