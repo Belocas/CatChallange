@@ -20,8 +20,11 @@ struct CatsListView: View {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: 16) {
                     ForEach(viewModel.filteredCats, id: \.id) { cat in
-                        CatGridItem(cat: cat)
-                            .onAppear {
+                        NavigationLink(destination: CatDetailView(cat: cat)) {
+                            CatGridItem(cat: cat)
+                        }
+                        .buttonStyle(PlainButtonStyle())
+                       .onAppear {
                                 if cat == viewModel.cats.last {
                                        viewModel.loadNextPage()
                                        viewModel.getCats()

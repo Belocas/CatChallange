@@ -9,6 +9,7 @@ import Foundation
 class CatGridItemViewModel: ObservableObject {
     private let cat: Cat
     private let catService = CatService()
+   var isFavorite = true
     
     init(cat: Cat) {
         self.cat = cat

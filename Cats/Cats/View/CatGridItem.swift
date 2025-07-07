@@ -61,10 +61,23 @@ struct CatGridItem: View {
                    
                    
                }
-               Text(viewModel.name)
-                   .font(.headline)
-                   .lineLimit(1)
-                   .minimumScaleFactor(0.7)
+               HStack {
+                   Text(viewModel.name)
+                       .font(.headline)
+                       .lineLimit(1)
+                       .minimumScaleFactor(0.7)
+                   Spacer()
+                   Button(action: {
+                       // viewModel.toggleFavorite()
+                   }) {
+                       Image(systemName: viewModel.isFavorite ? "heart.fill" : "heart")
+                           .foregroundColor(.red)
+                           .padding(2)
+                           .background(Color.white.opacity(0.7))
+                           .clipShape(Circle())
+            
+                   }}
+                   
            }
            .padding()
            .background(Color.white)

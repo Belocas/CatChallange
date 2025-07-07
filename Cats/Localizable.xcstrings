@@ -1,7 +1,92 @@
 {
   "sourceLanguage" : "en",
   "strings" : {
+    "Add Item" : {
 
+    },
+    "breed_name_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Breed Name : "
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Nome da Raça : "
+          }
+        }
+      }
+    },
+    "Cat Breeds" : {
+
+    },
+    "description_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Description : "
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Descrição : "
+          }
+        }
+      }
+    },
+    "Item at %@" : {
+
+    },
+    "Loading..." : {
+
+    },
+    "origin_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Origin : "
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Origem : "
+          }
+        }
+      }
+    },
+    "Search breeds" : {
+
+    },
+    "Select an item" : {
+
+    },
+    "temperament_label" : {
+      "extractionState" : "manual",
+      "localizations" : {
+        "en" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperament : "
+          }
+        },
+        "pt-PT" : {
+          "stringUnit" : {
+            "state" : "translated",
+            "value" : "Temperamento : "
+          }
+        }
+      }
+    }
   },
   "version" : "1.0"
 }
