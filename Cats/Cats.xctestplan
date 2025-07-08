@@ -1,0 +1,37 @@
+{
+  "configurations" : [
+    {
+      "id" : "0667F8E3-3DBE-4799-BCF2-12DB23955733",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:Cats.xcodeproj",
+      "identifier" : "22E3AE342E18731700DF0291",
+      "name" : "Cats"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Cats.xcodeproj",
+        "identifier" : "22E3AE492E18731900DF0291",
+        "name" : "CatsTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:Cats.xcodeproj",
+        "identifier" : "22E3AE532E18731900DF0291",
+        "name" : "CatsUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

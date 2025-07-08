@@ -6,9 +6,32 @@
 //
 
 import XCTest
+import CoreData
 @testable import Cats
 
-final class CatsTests: XCTestCase {
+final class CatDataManagerTests: XCTestCase {
+    
+    var inMemoryContext: NSManagedObjectContext!
+    var dataManager: CatDataManagerTests!
+    
+    
+    override func setUp() {
+        super.setUp()
+        let container = NSPersistentContainer(name: "Cats")
+        let description = NSPersistentStoreDescription()
+        description.type = NSInMemoryStoreType
+        container.persistentStoreDescriptions = [description]
+        
+        let expectation = self.expectation(description: "Load in-memory store")
+        container.loadPersistentStores{ _,error in
+            XCTAssertNil(error)
+            expectation.fulfill()
+        }
+        
+        wait(for: [expectation], timeout: 1.0)
+        inMemoryContext = container.viewContext
+        dataManager = CatDataManager(context: inMemoryContext)
+    }
 
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
